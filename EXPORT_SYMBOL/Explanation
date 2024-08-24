@@ -1,1 +1,25 @@
+Hello Connection,
+Let’s Learn About  EXPORT_SYMBOL(); Macros 
+I successfully completed Task 2 of my Embedded Linux device drive program.
+Task_2:-
+Getting character data from the user space and processing it in the kernel space with the help of an API (application program interface) Copy_from_user(), then convert the character to an integer and display output from another driver using macro EXPORT_SYMBOL();
+What is EXPORT_SYMBOL(); ?
+When some symbols (variables or functions) are using EXPORT_SYMBOL macro (ex. EXPORT_SYMBOL(func_name)), those symbols are exposed to all the loadable kernel drivers.
+You can call them directly in your kernel module without modifying the kernel code. 
+In other words, It tells the kbuild (Kernel Build) mechanism that the symbol referred to should be part of the global list of kernel symbols. That allows the kernel modules to access them. 
+How can you use EXPORT_SYMBOL(); ?
+Declare and define the symbol (functions or variables) which you want to make it visible to other kernel modules. Then below the definition, use EXPORT_SYMBOL(note name). Now it is visible to all loadable modules.
+Now take the kernel driver who is gonna use the above-exported symbol. Declare the symbol using extern. Then use the symbol directly.
+Finally, load the module first, which has the definition of the export symbol. Then load the caller module using insmod“.
+
+
+Note:That symbol should not be static or inline.
+
+Explanations:-
+
+Driver_1.c  has one function called E_function() and one global variable called E_count. This function and variable have been shared among all the loadable modules using EXPORT_SYMBOL.
+Driver 2 will be using that variable and function which are shared by Driver 1. When we read Driver 2, then it will call the shared function and we can read that variable also.
+ 
+Watch the attached video to gain insight into EXPORT_SYMBOL.
+
 
